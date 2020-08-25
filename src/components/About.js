@@ -6,7 +6,7 @@ const About = () => {
     <section className="about">
     <h2>Conway's Game of Life</h2>
     <p>Conway's Game of Life is a popular cellular automaton which was invented by the British mathematician John Horton Conway in 1970.</p>
-    <p>With just a few rules  </p>
+    <p>With just a few rules many forms of life can arise!</p>
     <p>Given a large enough grid and enough time, The Game of Life is actually Turing Complete!</p>
     </section>
   )

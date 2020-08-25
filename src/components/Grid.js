@@ -1,6 +1,13 @@
 import React from 'react';
 
 const Grid = (props) => {
+
+  function toggleCell(x, y) {
+    const newGrid = JSON.parse(JSON.stringify(props.grid));
+    newGrid[x][y] = !newGrid[x][y];
+    props.setGrid(newGrid);
+  }
+
   return (
     <div className="grid">
     {props.grid.map((row, i) => {
@@ -8,7 +15,7 @@ const Grid = (props) => {
         <div key={`${i}`} className="row">
         {
           row.map((cell, j) => {
-            return (<div key={`()${i},${j})`} className={`cell ${cell && "live"}`} onClick={()=>{props.toggleCell(i, j)}}></div>)
+            return (<div key={`()${i},${j})`} className={`cell ${cell && "live"}`} onClick={()=>{toggleCell(i, j)}}></div>)
           })
         }
       </div>

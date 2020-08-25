@@ -9,7 +9,6 @@ import Rules from './components/Rules.js';
 import ControlPanel from './components/ControlPanel.js';
 
 import {checkNeighbors} from './utils/helperFunctions.js';
-import {presets} from './presets.js';
 
 function App() {
   const [grid, setGrid] = useState(Array(25).fill(Array(25).fill(false)));
@@ -18,7 +17,8 @@ function App() {
   const [delay, setDelay] = useState(100);
 
   useInterval(() => {
-    nextGen();
+    const newGrid = nextGen(grid);
+    setGrid(newGrid);
   }, isRunning ? delay : null)
 
   // console.log(JSON.stringify(grid));
@@ -27,42 +27,11 @@ function App() {
     setDelay(Number(e.target.value));
   }
 
-  function handlePresetChange(e) {
-    // setIsRunning(false);
-    setGeneration(0);
-    setGrid(presets[e.target.value]);
-  }
-
-  function clearGrid() {
-    setIsRunning(false);
-    setGrid(Array(25).fill(Array(25).fill(false)));
-    setGeneration(0);
-  }
-  function randomize() {
-    const randomGrid = []
-    for (let i = 0; i < 25; i++) {
-      randomGrid.push([]);
-      for (let j = 0; j < 25; j++) {
-        const rand = Math.round(Math.random());
-        const val = rand === 1 ? true : false;
-        randomGrid[i].push(val);
-      }
-    }
-    setGeneration(0);
-    setGrid(randomGrid);
-  }
-
   function play() {
     setIsRunning(!isRunning);
   }
 
-  function toggleCell(x, y) {
-    const newGrid = JSON.parse(JSON.stringify(grid));
-    newGrid[x][y] = !newGrid[x][y];
-    setGrid(newGrid);
-  }
-
-  function nextGen() {
+  function nextGen(grid) {
     const newGrid = grid.map((row, i) => {
       return row.map((cell, j) => {
         const neighbors = checkNeighbors(grid, i, j);
@@ -74,7 +43,8 @@ function App() {
       })
     })
     setGeneration(generation + 1);
-    setGrid(newGrid);
+    // setGrid(newGrid);
+    return newGrid;
   }
 
   return (
@@ -83,12 +53,12 @@ function App() {
       <main>
         <About/>
         <div className="game">
-        <Grid grid={grid} toggleCell={toggleCell}/>
+        <Grid grid={grid} setGrid={setGrid} />
         <ControlPanel
           nextGen={nextGen} play={play} isRunning={isRunning}
           delay={delay} handleDelayChange={handleDelayChange}
-          presets={presets} handlePresetChange={handlePresetChange}
-          randomize={randomize} clearGrid={clearGrid}/>
+          setGrid={setGrid} grid={grid} setIsRunning={setIsRunning}
+          generation={generation} setGeneration={setGeneration}/>
         <span>Gen: {generation}</span>
         </div>
         <Rules/>
