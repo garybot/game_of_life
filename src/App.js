@@ -15,10 +15,11 @@ function App() {
   const [generation, setGeneration] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [delay, setDelay] = useState(100);
+  const [theme, setTheme] = useState("red");
 
   useInterval(() => {
-    const newGrid = nextGen(grid);
-    setGrid(newGrid);
+    setGeneration(generation + 1);
+    setGrid(nextGen(grid));
   }, isRunning ? delay : null)
 
   // console.log(JSON.stringify(grid));
@@ -42,8 +43,6 @@ function App() {
         }
       })
     })
-    setGeneration(generation + 1);
-    // setGrid(newGrid);
     return newGrid;
   }
 
@@ -53,13 +52,13 @@ function App() {
       <main>
         <About/>
         <div className="game">
-        <Grid grid={grid} setGrid={setGrid} />
-        <ControlPanel
-          nextGen={nextGen} play={play} isRunning={isRunning}
-          delay={delay} handleDelayChange={handleDelayChange}
-          setGrid={setGrid} grid={grid} setIsRunning={setIsRunning}
-          generation={generation} setGeneration={setGeneration}/>
-        <span>Gen: {generation}</span>
+          <Grid grid={grid} setGrid={setGrid} theme={theme} />
+          <ControlPanel
+            nextGen={nextGen} play={play} isRunning={isRunning}
+            delay={delay} handleDelayChange={handleDelayChange}
+            setGrid={setGrid} grid={grid} setIsRunning={setIsRunning}
+            generation={generation} setGeneration={setGeneration}
+            setTheme={setTheme}/>
         </div>
         <Rules/>
       </main>

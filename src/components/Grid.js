@@ -15,7 +15,7 @@ const Grid = (props) => {
         <div key={`${i}`} className="row">
         {
           row.map((cell, j) => {
-            return (<div key={`()${i},${j})`} className={`cell ${cell && "live"}`} onClick={()=>{toggleCell(i, j)}}></div>)
+            return (<div key={`()${i},${j})`} className={`cell ${cell && "live"} ${props.theme}`} onClick={()=>{toggleCell(i, j)}}></div>)
           })
         }
       </div>

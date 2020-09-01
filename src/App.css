@@ -12,7 +12,7 @@ main {
   margin: 50px;
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .row {
@@ -24,13 +24,74 @@ main {
   height: 20px;
   width: 20px;
   background: black;
-  border: 1px solid green;
 }
 
-.live {
+.cell.red {
+  border: solid 1px red;
+}
+.live.red {
+  background: red;
+}
+
+.cell.green {
+  border: solid 1px green;
+}
+.live.green {
   background: green;
 }
 
-.about {
+.cell.blue {
+  border: solid 1px blue;
+}
+.live.blue {
+  background: blue;
+}
 
+.cell.yellow {
+  border: solid 1px yellow;
+}
+.live.yellow {
+  background: yellow;
+}
+
+.cell.magenta {
+  border: solid 1px magenta;
+}
+.live.magenta {
+  background: magenta;
+}
+
+.cell.cyan {
+  border: solid 1px cyan;
+}
+.live.cyan {
+  background: cyan;
+}
+
+.ctrl {
+  display: flex;
+  flex-direction: column;
+  /* width: 450px; */
+  /* height: 500px; */
+  margin: 0 auto;
+  /* padding:3%; */
+}
+.ctrl div {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.ctrl button {
+  background: grey;
+  color: ivory;
+  width: 20%;
+  height: 20px;
+  /* margin: 0 10px; */
+
+}
+
+input, select, label, span {
+  /* width: 20%; */
+  /* height: 20px; */
+  margin: 0 10px;
 }
